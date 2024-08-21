@@ -1,6 +1,8 @@
 ﻿namespace TodoApi.Models;
 public class TodoItem {
-    public long Id { get; set; }
-    public string? Name { get; set; }
-    public bool IsComplete { get; set; }
+    public required long Id { get; set; }
+    public required string? Title { get; set; }
+    public required bool IsCompleted { get; set; }
+    public required DateTime Timestamp { get; set; }
+    public required string? Author { get; set; }
 }
