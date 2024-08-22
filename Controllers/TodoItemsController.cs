@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using System.Web.Http.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using EnableCorsAttribute = Microsoft.AspNetCore.Cors.EnableCorsAttribute;
 
 namespace TodoAPI.Controllers
 {
@@ -21,6 +24,7 @@ namespace TodoAPI.Controllers
         }
 
         // GET: api/TodoItems
+        [EnableCors("Policy1")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {

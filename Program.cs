@@ -7,6 +7,14 @@ namespace TodoAPI {
         public static void Main(string[] args) {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("Policy1",
+                    policy => {
+                        policy.WithOrigins().AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                    });
+            });
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -22,6 +30,10 @@ namespace TodoAPI {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("Policy1");
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
 
